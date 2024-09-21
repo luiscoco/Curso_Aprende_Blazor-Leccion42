@@ -1,0 +1,78 @@
+﻿@page "/stateHasChange"
+
+<h3>Task Manager</h3>
+
+<div>
+    <input type="text" placeholder="Task Title" @bind="newTaskTitle" />
+    <input type="text" placeholder="Task Description" @bind="newTaskDescription" />
+    <button class="btn btn-primary" @onclick="AddTask">Add Task</button>
+</div>
+
+<h4>Task List</h4>
+@if (tasks.Count == 0)
+{
+    <p>No tasks available.</p>
+}
+else
+{
+    <ul>
+        @foreach (var task in tasks)
+        {
+            <li>
+                <div>
+                    <strong>@task.Title</strong> - @task.Description
+                    @if (task.IsCompleted)
+                    {
+                        <span class="text-success">(Completed)</span>
+                    }
+                    else
+                    {
+                        <button class="btn btn-success" @onclick="() => MarkTaskAsCompleted(task)">Mark as Completed</button>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<TaskItem> tasks = new List<TaskItem>();
+    private string? newTaskTitle;
+    private string? newTaskDescription;
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrEmpty(newTaskTitle) && !string.IsNullOrEmpty(newTaskDescription))
+        {
+            tasks.Add(new TaskItem
+                {
+                    Title = newTaskTitle,
+                    Description = newTaskDescription,
+                    IsCompleted = false
+                });
+
+            // Clear input fields
+            newTaskTitle = string.Empty;
+            newTaskDescription = string.Empty;
+
+            // Trigger UI update after adding a task
+            StateHasChanged();
+        }
+    }
+
+    private void MarkTaskAsCompleted(TaskItem task)
+    {
+        task.IsCompleted = true;
+
+        // Update UI to reflect the task as completed
+        StateHasChanged();
+    }
+
+    public class TaskItem
+    {
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public bool IsCompleted { get; set; }
+    }
+}
+

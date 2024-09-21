@@ -1,0 +1,24 @@
+﻿@page "/initialize-example"
+
+<h3>OnInitialized Example</h3>
+
+<p>Message1: @message1</p>
+
+<p>Message2: @message2</p>
+
+@code {
+    private string message1 = "Initializing...";
+    private string message2 = "Initializing...";
+
+    protected override void OnInitialized()
+    {
+        message1 = "Component Initialized!";
+    }
+
+    // If you want to perform asynchronous operations, use OnInitializedAsync
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(3000); // Simulate delay
+        message2 = "Initialized after async operation!";
+    }
+}

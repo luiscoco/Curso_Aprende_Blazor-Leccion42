@@ -1,0 +1,48 @@
+﻿@page "/after-render-example"
+
+<h3>OnAfterRender Example</h3>
+<br />
+<p>Render count: @renderCount</p>
+<br />
+<p>Render count: @message1</p>
+<br />
+<p>Render count: @message2</p>
+
+<button @onclick="MarkTaskAsCompleted">´Renderizar el UI</button>
+
+@code {
+    private int renderCount = 0;
+
+    private string message1 = "";
+    private string message2 = "";
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        renderCount++;
+
+        if (firstRender)
+        {
+            message1 = "Component rendered for the first time";
+        }
+        else
+        {
+            message1 = "Component re-rendered";
+        }
+    }
+
+    // Asynchronous version
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(3000); // Simulate some async operation
+            message2 = "After render async logic executed.";
+        }
+    }
+
+    private void MarkTaskAsCompleted()
+    {
+        // Update UI to reflect the task as completed
+        StateHasChanged();
+    }
+}

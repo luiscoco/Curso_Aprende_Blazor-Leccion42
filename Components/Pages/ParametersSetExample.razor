@@ -1,0 +1,31 @@
+﻿@page "/parameters-example/{Name}"
+
+<h3>OnParametersSet Example</h3>
+<br />
+<p>Welcome, @Name!</p>
+<br />
+<p>Render count: @message1</p>
+<br />
+<p>Render count: @message2</p>
+
+@code {
+
+    [Parameter]
+    public string Name { get; set; } = "Default";
+
+    private string message1 = "";
+    private string message2 = "";
+
+    protected override void OnParametersSet()
+    {
+        message1 = $"Parameters set: {Name}";
+    }
+
+    // For async version
+    protected override async Task OnParametersSetAsync()
+    {
+        await Task.Delay(3000); // Simulate delay
+        message2 = $"Parameters set with async logic: {Name}";
+    }
+}
+

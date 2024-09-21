@@ -1,0 +1,34 @@
+﻿@page "/should-render-example"
+
+<h3>ShouldRender Example</h3>
+<br />
+<p>Message: @message</p>
+<br />
+<button @onclick="ChangeMessage">Change Message</button>
+
+@code {
+    private string message = "Hello World";
+    private bool preventRender = false;
+
+    private void ChangeMessage()
+    {
+        if (preventRender)
+        {
+            message = "Hello World";
+        }
+        else
+        {
+            message = "Message changed!";
+        }
+
+        preventRender = !preventRender; // Toggle the rendering prevention
+    }
+
+    protected override bool ShouldRender()
+    {
+        // If return is true, component will re-render
+        // If return is false, component will not re-render
+        return true;
+    }
+}
+

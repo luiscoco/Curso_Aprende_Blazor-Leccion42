@@ -1,0 +1,66 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">BlazorApp1</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="initialize-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Initialize_Example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="stateHasChange">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> StateHasChange_Example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="parameters-example/MensajePrimero">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> ParameterSet_Example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="after-render-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> AfterRender_Example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="should-render-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> ShouldRender_Example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dispose-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Dispose_Example
+            </NavLink>
+        </div>
+    </nav>
+</div>
+

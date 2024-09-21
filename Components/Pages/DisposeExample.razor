@@ -1,0 +1,37 @@
+﻿@page "/dispose-example"
+
+<h3>Dispose Example</h3>
+<br />
+<p>@message</p>
+<br />
+<button @onclick="Dispose">Stop Timer</button>
+
+@code {
+    private Timer? _timer;
+    private string message = "";
+    private int count = 0;
+
+    protected override void OnInitialized()
+    {
+        // Set the timer to call the callback every 1 second (1000 ms)
+        _timer = new Timer(TimerCallback, null, 0, 1000);
+    }
+
+    private void TimerCallback(object state)
+    {
+        count++;
+
+        // Ensure that UI updates happen on the main thread
+        InvokeAsync(() =>
+        {
+            message = $"Timer count: {count}";
+            StateHasChanged();  // Notify Blazor that the UI needs to be re-rendered
+        });
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+        message = "Component disposed and timer stopped.";
+    }
+}
